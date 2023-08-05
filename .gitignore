@@ -1,0 +1,7 @@
+# Dependencies
+node_modules/
+
+# Contracts
+build/
+cache/
+.openzeppelin/
