@@ -1,5 +1,6 @@
 const ElevatorFactory = artifacts.require('ElevatorFactory')
 const Elevator = artifacts.require('Elevator')
+const ElevatorAttack = artifacts.require('ElevatorAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -16,7 +17,12 @@ contract('Elevator', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Elevator)
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await ElevatorAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

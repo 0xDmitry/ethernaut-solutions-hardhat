@@ -1,5 +1,6 @@
 const GatekeeperOneFactory = artifacts.require('GatekeeperOneFactory')
 const GatekeeperOne = artifacts.require('GatekeeperOne')
+const GatekeeperOneAttack = artifacts.require('GatekeeperOneAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -21,7 +22,12 @@ contract('GatekeeperOne', function ([player]) {
       GatekeeperOne,
     )
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await GatekeeperOneAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

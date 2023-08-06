@@ -19,7 +19,10 @@ contract('Privacy', function ([player]) {
       value: web3.utils.toWei('1', 'ether'),
     })
 
-    // INSERT YOUR SOLUTION HERE
+    const slot5 = await web3.eth.getStorageAt(instance.address, 5)
+    // 0x7c4132911140941f6873d6de6aaf4933
+    const key = slot5.substring(0, 34)
+    await instance.unlock(key, { from: player })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

@@ -18,7 +18,9 @@ contract('Fallout', function ([player]) {
       from: player,
     })
 
-    // INSERT YOUR SOLUTION HERE
+    await instance.Fal1out({
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

