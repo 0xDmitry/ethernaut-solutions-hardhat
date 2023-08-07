@@ -1,5 +1,6 @@
 const AlienCodexFactory = artifacts.require('AlienCodexFactory')
 const AlienCodex = artifacts.require('AlienCodex')
+const AlienCodexAttack = artifacts.require('AlienCodexAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -18,7 +19,12 @@ contract('AlienCodex', function ([player]) {
       from: player,
     })
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await AlienCodexAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

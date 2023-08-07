@@ -1,5 +1,6 @@
 const GoodSamaritanFactory = artifacts.require('GoodSamaritanFactory')
 const GoodSamaritan = artifacts.require('GoodSamaritan')
+const GoodSamaritanAttack = artifacts.require('GoodSamaritanAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -24,7 +25,12 @@ contract('GoodSamaritan', function ([player]) {
       },
     )
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await GoodSamaritanAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

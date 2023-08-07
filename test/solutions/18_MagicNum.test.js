@@ -1,5 +1,6 @@
 const MagicNumFactory = artifacts.require('MagicNumFactory')
 const MagicNum = artifacts.require('MagicNum')
+const MagicNumAttack = artifacts.require('MagicNumAttack')
 
 const utils = require('../utils/TestUtils')
 
@@ -18,7 +19,12 @@ contract('MagicNum', function ([player]) {
       from: player,
     })
 
-    // INSERT YOUR SOLUTION HERE
+    const solver = await MagicNumAttack.new({
+      from: player,
+    })
+    instance.setSolver(solver.address, {
+      from: player,
+    })
 
     const completed = await utils.submitLevelInstance(
       ethernaut,
