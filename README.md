@@ -1,13 +1,10 @@
 # Ethernaut CTF - Hardhat edition
 
-## What is Ethernaut by OpenZeppelin
+## What is Ethernaut
 
-[Ethernaut](https://github.com/OpenZeppelin/ethernaut) is a Web3/Solidity based war game inspired in [overthewire.org](https://overthewire.org/), to be played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.
+[Ethernaut](https://ethernaut.openzeppelin.com/) is a Web3/Solidity based war game inspired in [overthewire.org](https://overthewire.org/), to be played in the Ethereum Virtual Machine. Each level is a smart contract that needs to be 'hacked'.
 
 The game acts both as a tool for those interested in learning Ethereum, and as a way to catalog historical hacks in levels. Levels can be infinite, and the game does not require to be played in any particular order.
-
-Created by [OpenZeppelin](https://www.openzeppelin.com/)
-Visit [https://ethernaut.openzeppelin.com/](https://ethernaut.openzeppelin.com/)
 
 ## Acknowledgements
 
@@ -31,7 +28,7 @@ yarn
 yarn compile
 ```
 
-### Run solutions
+### Check solutions
 
 ```bash
 yarn test
